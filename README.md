@@ -20,7 +20,7 @@ A rest REST API for querying and retrieving scoped news and information.
 
 ```
 
-###  TEST DATABASE SETUP
+#####  TEST DATABASE SETUP
 ```CREATE DATABASE news_portal_test WITH TEMPLATE news_portal```
 
 ## Known Bugs

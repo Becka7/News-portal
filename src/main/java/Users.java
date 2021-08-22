@@ -1,7 +1,9 @@
+import org.sql2o.Connection;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Users {
+public class Users implements DatabaseManagement{
     private int id;
     private String name;
     private int department_id;
@@ -41,6 +43,20 @@ public class Users {
         if (o == null || getClass() != o.getClass()) return false;
         Users users = (Users) o;
         return id == users.id && department_id == users.department_id && Objects.equals(name, users.name) && Objects.equals(role, users.role);
+    }
+
+    @Override
+    public void save() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO users (name , department_id, role) VALUES (:name,:id,:role)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("name", this.department_id)
+                    .addParameter("Developer", this.role)
+                    .executeUpdate()
+                    .getKey();
+        }
+
     }
 
     @Override

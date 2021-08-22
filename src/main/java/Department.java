@@ -10,7 +10,7 @@ public class Department implements DatabaseManagement {
     private int employees;
     private static ArrayList<Department> mInstance = new ArrayList<>();
 
-    private Department (String name,String description,int employees){
+    public Department(String name, String description, int employees){
         this.name = name;
         this.description = description;
         this.employees = employees;

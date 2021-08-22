@@ -1,6 +1,7 @@
 import org.sql2o.Connection;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Users implements DatabaseManagement{
@@ -62,6 +63,15 @@ public class Users implements DatabaseManagement{
     @Override
     public int hashCode() {
         return Objects.hash(id, name, department_id, role);
+    }
+
+    public List<Department> getDepartment() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM department WHERE userId=:id";
+            return con.createQuery(sql)
+                    .addParameter("id", this.id)
+                    .executeAndFetch(Department.class);
+        }
     }
 
 

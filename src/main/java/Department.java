@@ -1,14 +1,16 @@
+import org.sql2o.Connection;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class Department {
+public class Department implements DatabaseManagement {
     private int id;
     private String name;
     private String description;
     private int employees;
     private static ArrayList<Department> mInstance = new ArrayList<>();
 
-    private Department(String name,String description,int employees){
+    private Department (String name,String description,int employees){
         this.name = name;
         this.description = description;
         this.employees = employees;
@@ -43,8 +45,23 @@ public class Department {
         return id == that.id && employees == that.employees && Objects.equals(name, that.name) && Objects.equals(description, that.description);
     }
 
+
     @Override
     public int hashCode() {
         return Objects.hash(id, name, description, employees);
     }
+
+    @Override
+    public void save() {
+        try (Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO departments (name , description, employees) VALUES (:name,:department,:employees)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .addParameter("name", this.description)
+                    .addParameter("Developer", this.employees)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
 }

@@ -1,22 +1,28 @@
-# Forest-tracker
-#### An application that allows Rangers to track wildlife sightings in the Douglas Fir forest.
+# News_Portal
+####  A rest REST API for querying and retrieving scoped news and information.
 #### By **Rabecca Nzau**
 ## Description
-An application that allows Rangers to track wildlife sightings animals either endangered or not in the Douglas Fir. Forest
+A rest REST API for querying and retrieving scoped news and information.
 ## Setup/Installation Requirements
-* git clone``` https://github.com/Becka7/Forest-tracker.git```
+* git clone``` https://github.com/Becka7/News-portal.git```
 * cd your/path/to/Forest-tracker
 * open with editor of choice
 
 ##### DATABASE SETUP PSQL
 ```
- CREATE DATABASE wildlife_tracker;
+ CREATE DATABASE news_portal;
 
- CREATE TABLE animals (id serial PRIMARY KEY, name varchar, age varchar , health varchar,location  varchar);
-
- CREATE TABLE sightings (id serial PRIMARY KEY, animal name varchar, type varchar,location varchar, rangername varchar timesighted timestamp);
+ CREATE TABLE users(id serial PRIMARY KEY,name text,role varchar,department_id int);
+ 
+ CREATE TABLE departments(id serial PRIMARY KEY,name varchar,description varchar,employees int);
+ 
+ CREATE TABLE news(id serial PRIMARY KEY,text varchar,department varchar);
 
 ```
+
+###  TEST DATABASE SETUP
+```CREATE DATABASE news_portal_test WITH TEMPLATE news_portal```
+
 ## Known Bugs
 There are no known bugs at the moment
 ## Technologies Used

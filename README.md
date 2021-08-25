@@ -4,7 +4,7 @@
 ## Description
 A rest REST API for querying and retrieving scoped news and information.
 ## Setup/Installation Requirements
-* git clone``` https://github.com/Becka7/News-portal.git```
+* git clone``` https://github.com/Becka7/models.News-portal.git```
 * cd your/path/to/Forest-tracker
 * open with editor of choice
 
